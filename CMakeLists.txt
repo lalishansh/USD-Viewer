@@ -62,6 +62,10 @@ target_include_directories(${THIS_EXEC}
     PRIVATE
         ${GENERATED_SOURCE_FILES_DIR}
     )
+target_compile_options(${THIS_EXEC} PRIVATE
+        $<$<CXX_COMPILER_ID:MSVC>:/WX /W4>
+        $<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-Wall -Wextra -Wpedantic -Werror -Wconversion>
+    )
 
 # TEST TARGET
 add_executable(test_${THIS_EXEC}
